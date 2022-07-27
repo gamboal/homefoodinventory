@@ -1,0 +1,46 @@
+{
+  "project_info": {
+    "project_number": "173087745514",
+    "project_id": "home-food-inventory",
+    "storage_bucket": "home-food-inventory.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:173087745514:android:ee3311dcd7e81fff38be93",
+        "android_client_info": {
+          "package_name": "com.example.home_food_inventory_app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "173087745514-imhetipbccuu3807k93qd99od7qrqqg2.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBotz4Dr5ZDszeZW35BJrxDkBuYWXQz9QI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "173087745514-imhetipbccuu3807k93qd99od7qrqqg2.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "173087745514-86rpnkl841hgmpolipm2oo6jrgp3oai2.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.homeInventoryApp"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
