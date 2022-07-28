@@ -1,11 +1,14 @@
+// ignore_for_file: file_names
+
 import 'package:flutter/material.dart';
 import 'package:home_food_inventory_app/Controller/Authentication.dart';
 import 'package:home_food_inventory_app/Controller/TextFieldInput.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:home_food_inventory_app/Model/utils.dart';
+import 'package:home_food_inventory_app/Controller/utils.dart';
+import 'package:home_food_inventory_app/View/LoginScreen.dart';
 
 class SignupScreen extends StatefulWidget {
-  SignupScreen({Key? key}) : super(key: key);
+  const SignupScreen({Key? key}) : super(key: key);
 
   @override
   State<SignupScreen> createState() => _SignupScreenState();
@@ -39,8 +42,17 @@ class _SignupScreenState extends State<SignupScreen> {
     });
 
     if (res != 'Success') {
+      // ignore: use_build_context_synchronously
       showSnackBar(res, context);
     }
+  }
+
+    void goToLogin() {
+    Navigator.of(context).push(
+      MaterialPageRoute(
+        builder: (context) => LoginScreen(),
+      ),
+    );
   }
 
   @override
@@ -94,16 +106,6 @@ class _SignupScreenState extends State<SignupScreen> {
               InkWell(
                 onTap: signUpUser,
                 child: Container(
-                  child: _isLoading
-                      ? const Center(
-                          child: CircularProgressIndicator(),
-                        )
-                      : const Text(
-                          'Sign Up',
-                          style: TextStyle(
-                            fontWeight: FontWeight.bold,
-                          ),
-                        ),
                   width: double.infinity,
                   alignment: Alignment.center,
                   padding: const EdgeInsets.symmetric(vertical: 12),
@@ -115,6 +117,16 @@ class _SignupScreenState extends State<SignupScreen> {
                     ),
                     color: Colors.purple,
                   ),
+                  child: _isLoading
+                      ? const Center(
+                          child: CircularProgressIndicator(),
+                        )
+                      : const Text(
+                          'Sign Up',
+                          style: TextStyle(
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
                 ),
               ),
               const SizedBox(
@@ -126,22 +138,22 @@ class _SignupScreenState extends State<SignupScreen> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Container(
-                    child: Text("Don't have an account? "),
                     padding: const EdgeInsets.symmetric(
                       vertical: 8,
                     ),
+                    child: const Text("Already have an account? "),
                   ),
                   GestureDetector(
-                    onTap: signUpUser,
+                    onTap: goToLogin,
                     child: Container(
+                        padding: const EdgeInsets.symmetric(
+                          vertical: 8,
+                        ),
                         child: const Text(
-                          "Sign up.",
+                          "Login.",
                           style: TextStyle(
                             fontWeight: FontWeight.bold,
                           ),
-                        ),
-                        padding: const EdgeInsets.symmetric(
-                          vertical: 8,
                         )),
                   )
                 ],

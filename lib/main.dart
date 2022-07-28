@@ -1,7 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:home_food_inventory_app/Controller/UserProvider.dart';
 import 'package:home_food_inventory_app/View/LoginScreen.dart';
+import 'package:home_food_inventory_app/View/ResponsiveLayout.dart';
 import 'package:home_food_inventory_app/View/SignupScreen.dart';
+import 'package:home_food_inventory_app/View/HomePage.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:provider/provider.dart';
+import 'package:home_food_inventory_app/Model/UserDetail.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -14,13 +20,42 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      title: 'Home Food Inventory',
-      theme: ThemeData.dark().copyWith(
-        scaffoldBackgroundColor: Colors.green,
+    return MultiProvider(
+      providers: [
+        ChangeNotifierProvider(
+          create: (_) => UserProvider(),
+        ),
+      ],
+      child: MaterialApp(
+        debugShowCheckedModeBanner: false,
+        title: 'Home Food Inventory',
+        theme: ThemeData.dark().copyWith(
+          scaffoldBackgroundColor: Colors.green,
+        ),
+        home: StreamBuilder(
+          stream: FirebaseAuth.instance.authStateChanges(),
+          builder: (context, snapshot) {
+            if (snapshot.connectionState == ConnectionState.active) {
+              if (snapshot.hasData) {
+                return const ResponsiveLayout(
+                  webScreenLayout: HomePage(),
+                  mobileScreenLayout: HomePage(),
+                );
+              } else if (snapshot.hasError) {
+                return Center(
+                  child: Text('${snapshot.error}'),
+                );
+              }
+            }
+            if (snapshot.connectionState == ConnectionState.waiting) {
+              return Center(
+                child: CircularProgressIndicator(),
+              );
+            }
+            return LoginScreen();
+          },
+        ),
       ),
-      home: LoginScreen(),
     );
   }
 }
