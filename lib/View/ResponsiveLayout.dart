@@ -1,3 +1,5 @@
+// ignore_for_file: file_names
+
 import 'package:flutter/material.dart';
 import 'package:home_food_inventory_app/Controller/UserProvider.dart';
 import 'package:home_food_inventory_app/View/ScreenSize.dart';

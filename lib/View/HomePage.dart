@@ -1,10 +1,5 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:firebase_auth/firebase_auth.dart';
-import 'package:firebase_storage/firebase_storage.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:home_food_inventory_app/Controller/UserProvider.dart';
-import 'package:home_food_inventory_app/Model/UserDetail.dart';
-import 'package:provider/provider.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -17,12 +12,19 @@ class _HomePageState extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
-    UserDetail user = Provider.of<UserProvider>(context).getUser;
 
     return Scaffold(
       body: Center(
-        child: Text(user.name),
       ),
+      bottomNavigationBar: CupertinoTabBar(
+        backgroundColor: Colors.yellow, 
+        items: [
+        BottomNavigationBarItem(icon: Icon(Icons.home), label: "", backgroundColor: Colors.green),
+        BottomNavigationBarItem(icon: Icon(Icons.search), label: "", backgroundColor: Colors.green),
+        BottomNavigationBarItem(icon: Icon(Icons.add_circle), label: "", backgroundColor: Colors.green),
+        BottomNavigationBarItem(icon: Icon(Icons.favorite), label: "", backgroundColor: Colors.green),
+        BottomNavigationBarItem(icon: Icon(Icons.person), label: "", backgroundColor: Colors.green),
+      ]),
     );
   }
 }

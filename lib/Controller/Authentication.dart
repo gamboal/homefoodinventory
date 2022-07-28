@@ -1,22 +1,21 @@
-// ignore_for_file: unused_import, depend_on_referenced_packages
-
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_storage/firebase_storage.dart';
-import 'package:home_food_inventory_app/Model/UserDetail.dart';
+import 'package:home_food_inventory_app/Model/User.dart' as model;
 import 'dart:typed_data';
 
 class Authentication {
   final FirebaseAuth _auth = FirebaseAuth.instance;
   final FirebaseFirestore _firestore = FirebaseFirestore.instance;
 
-  Future<UserDetail> getUserDetail() async{
+  Future<model.User> getUserDetail() async {
     User currentUser = _auth.currentUser!;
 
-    DocumentSnapshot currentUserSnap = await _firestore.collection('user').doc(currentUser.uid).get();
+    DocumentSnapshot snap =
+        await _firestore.collection('user').doc(currentUser.uid).get();
 
-    return UserDetail.fromSnap(currentUserSnap);
+    return model.User.fromSnap(snap);
   }
 
   Future<String> signupUser({
@@ -33,10 +32,10 @@ class Authentication {
         print(userCred.user!.uid);
         //add user to the database
 
-        UserDetail user =
-            UserDetail(name: name, uid: userCred.user!.uid, email: email);
+        model.User user =
+            model.User(name: name, uid: userCred.user!.uid, email: email);
 
-        _firestore.collection('users').doc(userCred.user!.uid).set(
+        await _firestore.collection('users').doc(userCred.user!.uid).set(
               user.toJson(),
             );
         res = "Success";

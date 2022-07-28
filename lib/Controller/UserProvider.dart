@@ -1,17 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:home_food_inventory_app/Controller/Authentication.dart';
-import 'package:home_food_inventory_app/Model/UserDetail.dart';
+import 'package:home_food_inventory_app/Model/User.dart';
 
 
 
 class UserProvider with ChangeNotifier{
-  UserDetail? _user;
+  User? _user;
   final Authentication _authentication = Authentication();
 
-  UserDetail get getUser => _user!;
+  User get getUser => _user!;
 
   Future<void> refreshUser() async{
-    UserDetail user = await _authentication.getUserDetail();
+    User user = await _authentication.getUserDetail();
     _user = user;
     notifyListeners();
   }

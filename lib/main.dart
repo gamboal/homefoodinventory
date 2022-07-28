@@ -7,7 +7,7 @@ import 'package:home_food_inventory_app/View/HomePage.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:provider/provider.dart';
-import 'package:home_food_inventory_app/Model/UserDetail.dart';
+import 'package:home_food_inventory_app/Model/User.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -48,11 +48,11 @@ class MyApp extends StatelessWidget {
               }
             }
             if (snapshot.connectionState == ConnectionState.waiting) {
-              return Center(
+              return const Center(
                 child: CircularProgressIndicator(),
               );
             }
-            return LoginScreen();
+            return const LoginScreen();
           },
         ),
       ),

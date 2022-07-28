@@ -1,3 +1,5 @@
+// ignore_for_file: file_names
+
 import 'package:flutter/material.dart';
 import 'package:home_food_inventory_app/Controller/Authentication.dart';
 import 'package:home_food_inventory_app/Controller/TextFieldInput.dart';
@@ -6,7 +8,7 @@ import 'package:home_food_inventory_app/Controller/utils.dart';
 import 'package:home_food_inventory_app/View/SignupScreen.dart';
 
 class LoginScreen extends StatefulWidget {
-  LoginScreen({Key? key}) : super(key: key);
+  const LoginScreen({Key? key}) : super(key: key);
 
   @override
   State<LoginScreen> createState() => _LoginScreenState();
@@ -35,6 +37,7 @@ class _LoginScreenState extends State<LoginScreen> {
 
     if (res == "Success") {
     } else {
+      // ignore: use_build_context_synchronously
       showSnackBar(res, context);
     }
     setState(() {
@@ -45,11 +48,12 @@ class _LoginScreenState extends State<LoginScreen> {
     void goToSignup() {
     Navigator.of(context).push(
       MaterialPageRoute(
-        builder: (context) => SignupScreen(),
+        builder: (context) => const SignupScreen(),
       ),
     );
   }
 
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: SafeArea(
@@ -95,12 +99,6 @@ class _LoginScreenState extends State<LoginScreen> {
                         child: CircularProgressIndicator(),
                       )
                     : Container(
-                        child: const Text(
-                          'Log In',
-                          style: TextStyle(
-                            fontWeight: FontWeight.bold,
-                          ),
-                        ),
                         width: double.infinity,
                         alignment: Alignment.center,
                         padding: const EdgeInsets.symmetric(vertical: 12),
@@ -111,6 +109,12 @@ class _LoginScreenState extends State<LoginScreen> {
                             ),
                           ),
                           color: Colors.purple,
+                        ),
+                        child: const Text(
+                          'Log In',
+                          style: TextStyle(
+                            fontWeight: FontWeight.bold,
+                          ),
                         ),
                       ),
               ),
@@ -123,22 +127,22 @@ class _LoginScreenState extends State<LoginScreen> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Container(
-                    child: Text("Don't have an account? "),
                     padding: const EdgeInsets.symmetric(
                       vertical: 8,
                     ),
+                    child: const Text("Don't have an account? "),
                   ),
                   GestureDetector(
                     onTap: goToSignup,
                     child: Container(
+                        padding: const EdgeInsets.symmetric(
+                          vertical: 8,
+                        ),
                         child: const Text(
                           "Sign up.",
                           style: TextStyle(
                             fontWeight: FontWeight.bold,
                           ),
-                        ),
-                        padding: const EdgeInsets.symmetric(
-                          vertical: 8,
                         )),
                   )
                 ],
