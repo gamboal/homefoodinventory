@@ -2,7 +2,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:home_food_inventory_app/Controller/UserProvider.dart';
-import 'package:home_food_inventory_app/View/ScreenSize.dart';
+import 'package:home_food_inventory_app/Controller/Variables.dart';
 import 'package:provider/provider.dart';
 
 class ResponsiveLayout extends StatefulWidget {

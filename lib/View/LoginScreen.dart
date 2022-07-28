@@ -4,7 +4,9 @@ import 'package:flutter/material.dart';
 import 'package:home_food_inventory_app/Controller/Authentication.dart';
 import 'package:home_food_inventory_app/Controller/TextFieldInput.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:home_food_inventory_app/Controller/utils.dart';
+import 'package:home_food_inventory_app/Controller/Utils.dart';
+import 'package:home_food_inventory_app/View/HomePage.dart';
+import 'package:home_food_inventory_app/View/ResponsiveLayout.dart';
 import 'package:home_food_inventory_app/View/SignupScreen.dart';
 
 class LoginScreen extends StatefulWidget {
@@ -36,6 +38,15 @@ class _LoginScreenState extends State<LoginScreen> {
     );
 
     if (res == "Success") {
+      Navigator.of(context).pushAndRemoveUntil(
+          MaterialPageRoute(
+            builder: (context) => const ResponsiveLayout(
+              mobileScreenLayout: HomePage(),
+              webScreenLayout: HomePage(),
+            ),
+          ),
+          (route) => false);
+
     } else {
       // ignore: use_build_context_synchronously
       showSnackBar(res, context);

@@ -13,7 +13,7 @@ class Authentication {
     User currentUser = _auth.currentUser!;
 
     DocumentSnapshot snap =
-        await _firestore.collection('user').doc(currentUser.uid).get();
+        await _firestore.collection('users').doc(currentUser.uid).get();
 
     return model.User.fromSnap(snap);
   }

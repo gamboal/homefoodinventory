@@ -41,10 +41,10 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: PageView(
+        children: homeScreenItems,
         physics: const NeverScrollableScrollPhysics(),
         controller:  pageController,
         onPageChanged: onPageChanged,
-        children: homeScreenItems,
       ),
       bottomNavigationBar: CupertinoTabBar(
         backgroundColor: Colors.lightGreen,
@@ -65,7 +65,7 @@ class _HomePageState extends State<HomePage> {
               label: '',
               backgroundColor: Colors.green),
           BottomNavigationBarItem(
-              icon: Icon(Icons.favorite,
+              icon: Icon(Icons.article,
                   color: _page == 3 ? Colors.white : Colors.blueGrey),
               label: '',
               backgroundColor: Colors.green),
